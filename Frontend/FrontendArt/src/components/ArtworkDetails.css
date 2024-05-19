@@ -1,0 +1,62 @@
+.artwork-details-container {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.artwork-info {
+    display: flex;
+    align-items: flex-start;
+    /* Align items at the top */
+}
+
+.artwork-image {
+    max-width: 300px;
+    margin-right: 20px;
+    /* Add margin to create space */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.info {
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    /* Use Arial font */
+}
+
+/* Style the zoom button */
+.zoom-button {
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.zoom-button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Adjust the styling of extra features section */
+.extra-features {
+    margin-top: 30px;
+}
+
+.extra-features h2 {
+    color: #007bff;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.extra-features ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.extra-features li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
