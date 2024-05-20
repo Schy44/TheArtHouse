@@ -25,25 +25,32 @@ import ArtworkDetails from './components/ArtworkDetails'
 import ShoppingCart from './components/ShoppingCart'
 import ArtworkDisplay from './components/ArtworkDisplay'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ArtworkForm from './components/ArtworkForm'
+import { CartProvider } from './CartContext';
+
+
+
+
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-
-
-          <Route path='/' element={<Homepage />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/ArtworkDisplay' element={<ArtworkDisplay />} />
-          <Route path='/ShoppingCart' element={<ShoppingCart />} />
-          <Route path="/artwork-details/:id" element={<ArtworkDetails />} />
-
-        </Routes>
-      </BrowserRouter>
-
-    </>
-  )
+    <CartProvider>
+      <>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Homepage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/ArtworkDisplay' element={<ArtworkDisplay />} />
+            <Route path='/ArtworkForm' element={<ArtworkForm />} />
+            <Route path='/ShoppingCart' element={<ShoppingCart />} />
+            <Route path="/artwork-details/:id" element={<ArtworkDetails />} />
+          </Routes>
+        </BrowserRouter>
+      </>
+    </CartProvider>
+  );
 }
 
+
 export default App
+

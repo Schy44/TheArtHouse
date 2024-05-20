@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Form, Pagination } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './ArtworkDisplay.css';
 
@@ -13,16 +13,24 @@ const ArtworkDisplay = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/artworks/')
-            .then(response => response.json())
-            .then(data => {
-                setArtworks(data);
-                setFilteredArtworks(data);
-                const uniqueArtists = [...new Set(data.map(artwork => artwork.artist))];
-                setArtists(uniqueArtists);
-            })
-            .catch(error => console.error('Error fetching artworks:', error));
+        fetchArtworks();
     }, []);
+
+    const fetchArtworks = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/artworks/');
+            if (!response.ok) {
+                throw new Error('Failed to fetch artworks');
+            }
+            const data = await response.json();
+            setArtworks(data);
+            setFilteredArtworks(data);
+            const uniqueArtists = [...new Set(data.map(artwork => artwork.artist))];
+            setArtists(uniqueArtists);
+        } catch (error) {
+            console.error('Error fetching artworks:', error);
+        }
+    };
 
     const handleFilterChange = (event) => {
         const artist = event.target.value;
@@ -53,7 +61,7 @@ const ArtworkDisplay = () => {
     return (
         <Container fluid className="artwork-container">
             <Row>
-                <Col md={2} className="sidebar">
+                <Col md={3} lg={2} className="sidebar">
                     <h4>Filter by Artist</h4>
                     <Form.Control as="select" value={selectedArtist} onChange={handleFilterChange}>
                         <option value="">All Artists</option>
@@ -62,15 +70,15 @@ const ArtworkDisplay = () => {
                         ))}
                     </Form.Control>
                 </Col>
-                <Col md={10}>
-                    <div className="welcome-banner">
+                <Col md={9} lg={10}>
+                    <div className="welcome-banner text-center my-4">
                         <h2>Welcome to the World of Art</h2>
                         <p>Discover and buy amazing artwork from talented artists</p>
                     </div>
                     <Row>
                         {currentArtworks.map(artwork => (
-                            <Col key={artwork.id} sm={12} md={6} lg={4} className="artwork-col">
-                                <Card className="artwork-card">
+                            <Col key={artwork.id} sm={12} md={6} lg={4} className="mb-4">
+                                <Card className="artwork-card h-100 shadow-sm">
                                     <Card.Img variant="top" src={artwork.picture} alt={artwork.title} className="artwork-img" />
                                     <Card.Body>
                                         <Card.Title>{artwork.title}</Card.Title>
@@ -79,24 +87,23 @@ const ArtworkDisplay = () => {
                                             <strong>Price:</strong> ${artwork.price}<br />
                                             <strong>Published:</strong> {new Date(artwork.publishing_date).toLocaleDateString()}
                                         </Card.Text>
-                                        <Button variant="primary" className="buy-button" onClick={() => handleSeeDetails(artwork.id)}>SEE DETAILS</Button>
+                                        <Button variant="primary" onClick={() => handleSeeDetails(artwork.id)}>See Details</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
                         ))}
                     </Row>
-                    <div className="pagination-container">
+                    <Pagination className="justify-content-center mt-4">
                         {Array.from({ length: totalPages }, (_, index) => (
-                            <Button
+                            <Pagination.Item
                                 key={index + 1}
-                                variant={index + 1 === currentPage ? 'primary' : 'light'}
+                                active={index + 1 === currentPage}
                                 onClick={() => handlePageChange(index + 1)}
-                                className="pagination-item"
                             >
                                 {index + 1}
-                            </Button>
+                            </Pagination.Item>
                         ))}
-                    </div>
+                    </Pagination>
                 </Col>
             </Row>
         </Container>

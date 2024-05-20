@@ -1,22 +1,31 @@
-// cartActions.js
+// 1. Check Action Dispatch
+const handleBuy = () => {
+    console.log('Buy button clicked'); // Add this line
+    addToCart(artwork); // Add item to cart
+    history.push('/shopping-cart'); // Redirect to shopping cart page
+};
 
-// Action types
-export const ADD_TO_CART = 'ADD_TO_CART';
-export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
-export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
+// 2. Verify Reducer (in your reducer file)
+const cartReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case ADD_TO_CART:
+            console.log('Item added to cart:', action.payload); // Add this line
+            return {
+                ...state,
+                items: [...state.items, action.payload],
+            };
+        // Other cases...
+        default:
+            return state;
+    }
+};
 
-// Action creators
-export const addToCart = (item) => ({
-    type: ADD_TO_CART,
-    payload: item,
-});
+// 3. Check Component Props (inside ArtworkDetails component)
+console.log('Props received:', { addItemToCart }); // Add this line
 
-export const removeFromCart = (itemId) => ({
-    type: REMOVE_FROM_CART,
-    payload: itemId,
-});
-
-export const updateQuantity = (itemId, quantity) => ({
-    type: UPDATE_QUANTITY,
-    payload: { itemId, quantity },
-});
+// 4. Button Click (inside ArtworkDetails component)
+const handleBuy = () => {
+    console.log('Buy button clicked'); // Add this line
+    addToCart(artwork); // Add item to cart
+    history.push('/shopping-cart'); // Redirect to shopping cart page
+};

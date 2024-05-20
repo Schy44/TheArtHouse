@@ -1,0 +1,79 @@
+/* RegisterForm.css */
+.register-container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    /* Light gray background */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+}
+
+.register-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+    /* Dark text color */
+}
+
+.register-container .form-group {
+    margin-bottom: 15px;
+}
+
+.register-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.register-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.register-container input:focus {
+    outline: none;
+    border-color: #007bff;
+    /* Focus color */
+}
+
+.register-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    /* Blue button */
+    color: #fff;
+    /* White text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-container button:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}
+
+.register-container p {
+    margin-top: 15px;
+    text-align: center;
+    color: #555;
+    /* Gray text color */
+}
+
+.register-container p a {
+    color: #007bff;
+    /* Blue link color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-container p a:hover {
+    text-decoration: underline;
+}

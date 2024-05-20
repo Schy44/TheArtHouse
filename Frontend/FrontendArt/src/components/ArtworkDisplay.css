@@ -1,42 +1,41 @@
-/* ArtworkDisplay.css */
-
 .artwork-container {
-    padding-top: 50px;
-    /* Adjust as needed */
+    padding: 20px;
 }
 
 .sidebar {
     background-color: #f8f9fa;
     padding: 20px;
-    height: calc(100vh - 50px);
-    /* Adjust to fill available height */
-    overflow-y: auto;
-    /* Add scrollbar if needed */
+    border-right: 1px solid #dee2e6;
 }
 
-/* ArtworkDisplay.css */
-
 .welcome-banner {
-    padding: 20px;
-    background-color: #084887;
-    /* Dark background color */
-    color: #ffffff;
-    /* White text color */
+    background-color: #343a40;
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
     margin-bottom: 20px;
 }
 
 .artwork-card {
-    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.artwork-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .artwork-img {
     height: 200px;
-    /* Adjust as needed */
     object-fit: cover;
 }
 
 .pagination-container {
-    margin-top: 20px;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-item {
+    margin: 0 5px;
 }

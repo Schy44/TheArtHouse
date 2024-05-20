@@ -16,13 +16,18 @@ function Homepage() {
                     <h1>The Art House</h1>
                     <p>A place where you can buy or sell art.</p>
                     <div className="options">
-                        <button>Buy</button>
-                        <button>Sell</button>
+                        <Link to="/ArtworkDisplay">
+                            <button>Buy</button>
+                        </Link>
+                        {/* Redirect to ArtworkForm when clicking Sell button */}
+                        <Link to="/ArtworkForm">
+                            <button style={{ marginLeft: '8px' }}>Sell</button>
+                        </Link>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Homepage;

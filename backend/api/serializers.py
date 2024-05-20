@@ -1,19 +1,18 @@
-# api/serializers.py
-
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Artwork
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user
 
 class ArtworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artwork
         fields = '__all__'
-        extra_kwargs = {
-            'picture': {'required': False}
-        }
-
-    picture = serializers.SerializerMethodField()
-
-    def get_picture(self, obj):
-        request = self.context.get('request')
-        picture_url = obj.picture.url
-        return request.build_absolute_uri(picture_url)

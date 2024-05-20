@@ -1,0 +1,20 @@
+/* ShoppingCart.css */
+
+.shopping-cart-container {
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.total-row {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.checkout-button {
+    margin-top: 20px;
+}
